@@ -2,17 +2,13 @@
 
 ## GUIDE
 
-1. config `docker-compose.yml` such as:
+start the service
 
-```yml
-verdaccio-ldap:
-    image: snadn/verdaccio-ldap
-    ports:
-        - "4873:4873"
-    volumes:
-        - /srv/verdaccio-ldap/storage:/app/storage
-        - /srv/verdaccio-ldap/config:/app/config
-    restart: always
+```bash
+    V_PATH=/path/for/verdaccio; docker run -it --rm --name verdaccio \
+        -p 4873:4873 \
+        -v $V_PATH/conf:/verdaccio/conf \
+        -v $V_PATH/storage:/verdaccio/storage \
+        -v $V_PATH/plugins:/verdaccio/plugins \
+        zhiyuc123/verdaccio-ldap:v6
 ```
-
-2. start the service `docker-compose up -d verdaccio-ldap`
